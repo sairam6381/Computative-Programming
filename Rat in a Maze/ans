@@ -1,0 +1,39 @@
+#include <stdio.h>
+int solution[100][100],arr[100][100],n;
+
+int solvemaze(int r,int c){
+    if(r==n-1&&c==n-1){
+        solution[r][c]=1;
+        return 1;
+    }
+    if(r>=0&& c>=00&&r<n&&c<n&&solution[r][c]==0&&arr[r][c]==1){
+        solution[r][c]=1;
+        if(solvemaze(r,c+1))
+        return 1;
+        if(solvemaze(r+1,c))
+        return 1;
+        solution[r][c]=0;
+        return 0;
+    }
+    return 0;
+}
+
+int main()
+{
+    scanf("%d",&n);
+    for (int i=0;i<n;i++)
+        for (int j=0;j<n;j++){
+        scanf("%d",&arr[i][j]);
+        solution[i][j]=0;}
+    if(solvemaze(0,0)){
+        printf("solution is \n");
+        for (int i=0;i<n;i++){
+        for (int j=0;j<n;j++)     
+        printf("%d ",solution[i][j]);
+        printf("\n");
+    }}
+    else
+    printf("no solution");
+    return 0;
+}
+
